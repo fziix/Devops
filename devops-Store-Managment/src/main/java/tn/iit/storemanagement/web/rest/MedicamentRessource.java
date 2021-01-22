@@ -15,7 +15,6 @@ import java.util.Collection;
 @RestController()
 public class MedicamentRessource {
 
-    private final Logger logger = LoggerFactory.getLogger (MedicamentRessource.class);
     private final MedicamentService medicamentService;
 
     public MedicamentRessource(MedicamentService medicamentService) {
@@ -24,32 +23,28 @@ public class MedicamentRessource {
 
     @GetMapping("/{id}")
     public MedicamentDto findOne(@PathVariable("id") long id) {
-        this.logger.debug ("Getting Medicament {}", id);
+
         return this.medicamentService.findOne (id);
     }
 
     @GetMapping()
     public Collection<MedicamentDto> findAll() {
-        this.logger.debug ("Getting all medicaments");
         return this.medicamentService.findAll ();
     }
 
     @PostMapping
     public MedicamentDto add(@Valid @RequestBody MedicamentDto medicamentDto) {
-        this.logger.debug ("Adding new Medicament {}", medicamentDto);
 
         return this.medicamentService.save (medicamentDto);
     }
 
     @PutMapping()
     public MedicamentDto update(@Valid @RequestBody MedicamentDto medicamentDto) {
-        this.logger.debug ("Updating Medicament {} with {}", medicamentDto.getId (), medicamentDto);
         return this.medicamentService.save (medicamentDto);
     }
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable("id") long id) {
-        this.logger.debug ("Deleting Medicament {}", id);
         this.medicamentService.deleteById (id);
     }
 }

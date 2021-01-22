@@ -1,4 +1,4 @@
-package tn.iit.medicalfile.factory;
+package tn.iit.medicalfile.mappers;
 
 import tn.iit.medicalfile.domain.Dossier;
 import tn.iit.medicalfile.dto.DossierDto;
@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class DossierFactory {
+public class DossierMapper {
 
     public static DossierDto dossierToDossierDto(Dossier dossier)
     {
@@ -22,7 +22,7 @@ public class DossierFactory {
     {
         Dossier dossier = new Dossier ();
         dossier.setId (dossierDto.getId ());
-        dossier.setPatient (PatientFactory.patientDtoToPatient (new PatientDto (dossierDto.getPatientId ())));
+        dossier.setPatient (PatientMapper.patientDtoToPatient (new PatientDto (dossierDto.getPatientId ())));
         return dossier;
     }
 

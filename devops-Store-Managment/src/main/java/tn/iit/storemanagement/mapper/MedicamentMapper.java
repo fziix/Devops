@@ -26,7 +26,6 @@ public class MedicamentMapper {
     {
         Medicaments medicaments = new Medicaments();
         medicaments.setId (medicamentDto.getId ());
-        //TODO:Verify if Category Exists or no
         CategorieDto categorieDto =new CategorieDto(medicamentDto.getCategotieId(),medicamentDto.getCategorieNom());
         medicaments.setCategorie (CategoryMapper.categoryDtoToCategory (categorieDto));
         medicaments.setDateExpiration (medicamentDto.getDateExpiration());

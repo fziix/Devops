@@ -1,4 +1,4 @@
-package tn.iit.medicalfile.factory;
+package tn.iit.medicalfile.mappers;
 
 import tn.iit.medicalfile.domain.Patient;
 import tn.iit.medicalfile.dto.PatientDto;
@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class PatientFactory {
+public class PatientMapper {
     public static PatientDto patientToPatientDto(Patient patient)
     {
         PatientDto patientDto = new PatientDto ();

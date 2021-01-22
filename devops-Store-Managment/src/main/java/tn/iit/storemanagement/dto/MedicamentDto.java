@@ -12,6 +12,7 @@ import java.util.Date;
 
 @AllArgsConstructor
 public class MedicamentDto {
+    
     private long id;
     @NotNull
     @NotEmpty

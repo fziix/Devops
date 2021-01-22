@@ -25,8 +25,8 @@ public class SwaggerConfig {
 
     public ApiInfo apiInfo(){
         return new ApiInfoBuilder ()
-                .title ("Store Management API")
-                .description ("Store Management API using Swagger")
+                .title ("Store Management")
+                .description ("Store Management")
                 .build ();
     }
 }
