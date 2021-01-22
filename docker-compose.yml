@@ -1,0 +1,61 @@
+version: "3.3"
+volumes:
+  my-volume:
+    external: true
+networks:
+  default:
+    external:
+      name: medication
+
+services:
+  storemanagement:
+    container_name: storemanagemenNt
+    image: storemanagement
+    ports:
+      - 8085:8085
+    networks:
+      default:
+        aliases:
+          - storemanagement
+    depends_on:
+      - storemanagementdb
+  medicalfile:
+    container_name: medicalfile
+    image: medicalfile
+    ports:
+      - 8086:8086
+    networks:
+      default:
+        aliases:
+          - medicalfile
+    depends_on:
+      - medicalfiledb
+  medicalfiledb:
+    image: mysql
+    container_name: medicalfiledb
+    ports:
+      - 8088:3306
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=true
+      - MYSQL_DATABASE=medicalfile
+    volumes:
+      - my-volume:/var/lib/medicalfilemysql
+    networks:
+      default:
+        aliases:
+          - medicalfiledb
+  storemanagementdb:
+    image: mysql
+    container_name: storemanagementdb
+    ports:
+      - 8089:3306
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=true
+      - MYSQL_DATABASE=storemanagement
+    volumes:
+      - my-volume:/var/lib/storemanagementmysql
+    networks:
+      default:
+        aliases:
+          - storemanagementdb
+
