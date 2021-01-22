@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import tn.iit.medicalfile.dao.DossierDao;
 import tn.iit.medicalfile.domain.Dossier;
 import tn.iit.medicalfile.dto.DossierDto;
-import tn.iit.medicalfile.factory.DossierFactory;
+import tn.iit.medicalfile.mappers.DossierMapper;
 
 import javax.transaction.Transactional;
 import java.util.Collection;
@@ -21,7 +21,7 @@ public class DossierService {
     }
 
     public DossierDto save(DossierDto dossierDto) {
-       this.dossierDao.saveAndFlush (DossierFactory.dossierDtoToDossier (dossierDto));
+       this.dossierDao.saveAndFlush (DossierMapper.dossierDtoToDossier (dossierDto));
        return dossierDto;
     }
 
@@ -30,10 +30,10 @@ public class DossierService {
     }
 
     public DossierDto findOne(Long id) {
-        return DossierFactory.dossierToDossierDto (this.dossierDao.getOne (id));
+        return DossierMapper.dossierToDossierDto (this.dossierDao.getOne (id));
     }
 
     public Collection<DossierDto> findAll() {
-        return DossierFactory.dossiersToDossierDtos (this.dossierDao.findAll ());
+        return DossierMapper.dossiersToDossierDtos (this.dossierDao.findAll ());
     }
 }

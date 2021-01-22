@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import tn.iit.medicalfile.dto.DossierDto;
 import tn.iit.medicalfile.domain.Dossier;
-import tn.iit.medicalfile.factory.PatientFactory;
+import tn.iit.medicalfile.mappers.PatientMapper;
 import tn.iit.medicalfile.services.DossierService;
 import tn.iit.medicalfile.services.PatientService;
 
@@ -37,7 +37,7 @@ public class DossierRessource {
 
     @PostMapping
     public DossierDto add(@Valid @RequestBody DossierDto dossierDto){
-        Dossier dossier = new Dossier (PatientFactory.patientDtoToPatient (this.patientService.findOne (dossierDto.getPatientId ())));
+        Dossier dossier = new Dossier (PatientMapper.patientDtoToPatient (this.patientService.findOne (dossierDto.getPatientId ())));
         return this.dossierService.save (dossierDto);
     }
 

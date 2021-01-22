@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import tn.iit.medicalfile.dao.PatientDao;
 import tn.iit.medicalfile.domain.Patient;
 import tn.iit.medicalfile.dto.PatientDto;
-import tn.iit.medicalfile.factory.PatientFactory;
+import tn.iit.medicalfile.mappers.PatientMapper;
 
 import javax.transaction.Transactional;
 import java.util.Collection;
@@ -23,7 +23,7 @@ public class PatientService {
 
     public PatientDto save(PatientDto patientDto) {
 
-        this.patientDao.saveAndFlush (PatientFactory.patientDtoToPatient (patientDto));
+        this.patientDao.saveAndFlush (PatientMapper.patientDtoToPatient (patientDto));
         return patientDto;
     }
 
@@ -32,10 +32,10 @@ public class PatientService {
     }
 
     public PatientDto findOne(Long id) {
-        return PatientFactory.patientToPatientDto (this.patientDao.getOne (id));
+        return PatientMapper.patientToPatientDto (this.patientDao.getOne (id));
     }
 
     public Collection<PatientDto> findAll() {
-        return PatientFactory.patientsToPatientDtos (this.patientDao.findAll ());
+        return PatientMapper.patientsToPatientDtos (this.patientDao.findAll ());
     }
 }
